@@ -3,13 +3,20 @@
 #include "verilated.h"
 #include "verilated_vcd_c.h"
 
+// --- FIX: Define simulation time variable ---
+vluint64_t main_time = 0;
+
+double sc_time_stamp() {
+    return main_time;
+}
+
 int main(int argc, char** argv) {
     Verilated::commandArgs(argc, argv);
     Verilated::traceEverOn(true);
 
     Vcounter* dut = new Vcounter;
     VerilatedVcdC* m_trace = new VerilatedVcdC;
-    
+
     // Waveform setup
     dut->trace(m_trace, 5);
     m_trace->open("waveform.vcd");
@@ -26,6 +33,3 @@ int main(int argc, char** argv) {
     delete dut;
     return 0;
 }
-
-// Time tracking (needed for C++ linking)
-double sc_time_stamp() { return 0; }
