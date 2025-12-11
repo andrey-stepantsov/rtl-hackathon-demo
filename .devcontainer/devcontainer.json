@@ -1,0 +1,20 @@
+{
+  "name": "RTL Hackathon Env",
+  "image": "mcr.microsoft.com/devcontainers/python:3.10",
+  "features": {
+    "ghcr.io/devcontainers/features/common-utils:2": {
+      "configureZshAsDefaultShell": true
+    }
+  },
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        "lramseyer.vaporview",   // For viewing waveforms
+        "mshr-h.veriloghdl",     // Verilog syntax highlighting
+        "ms-python.python"
+      ]
+    }
+  },
+  "postCreateCommand": "sudo apt-get update && sudo apt-get install -y verilator make build-essential git && pip install aider-chat google-generativeai",
+  "remoteUser": "vscode"
+}
